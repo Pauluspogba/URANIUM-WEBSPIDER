@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    /* Your styles remain unchanged */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -88,7 +89,6 @@
     #quiz { background-color: orange; }
     #references { background-color: #909090; }
     #map { background-color: #808080; overflow: hidden; }
-
     h2 {
       color: #003366;
     }
@@ -103,8 +103,6 @@
       color: #003366;
       text-decoration: underline;
     }
-
-    /* MAP FIX */
     #uraniumMap {
       width: 100%;
       max-width: 100%;
@@ -114,8 +112,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       box-sizing: border-box;
     }
-
-    /* Card styles */
     #comparison .methods-container {
       display: flex;
       flex-wrap: wrap;
@@ -160,7 +156,7 @@
   </style>
 </head>
 <body>
-  <header>
+ <header>
     <h1>Uranium Futures Namibia</h1>
     <p>THE FUTURE OF SUSTAINABLE URANIUM AND CLEAN GREEN ENERGY</p>
   </header>
@@ -534,8 +530,7 @@
   <h2>Uranium Mining Map – Namibia</h2>
   <div id="uraniumMap"></div>
 </section>
-
-  <section id="quiz">
+<section id="quiz">
     <h2>Test Your Knowledge</h2>
     
     <form id="quizForm">
@@ -578,50 +573,41 @@
       <li>Peer-reviewed journals on ISR and bioleaching</li>
     </ul>
   </section>
+										
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  window.addEventListener('load', () => {
+    const map = L.map('uraniumMap').setView([-22.45, 15.05], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
+    const mines = [
+      {
+        name: "Rossing Uranium Mine",
+        coords: [-22.4333, 15.0333],
+        info: "One of the world’s oldest uranium mines, open-pit operation."
+      },
+      {
+        name: "Husab Uranium Mine",
+        coords: [-22.5275, 15.0494],
+        info: "One of the largest uranium mines in Namibia, near Rossing."
+      },
+      {
+        name: "Langer Heinrich Mine",
+        coords: [-22.4625, 15.3972],
+        info: "Operated by Paladin Energy, currently under care & maintenance."
+      }
+    ];
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script>
-    window.addEventListener('load', () => {
-      const map = L.map('uraniumMap').setView([-22.45, 15.05], 7);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
-
-      const mines = [
-        {
-          name: "Rossing Uranium Mine",
-          coords: [-22.4333, 15.0333],
-          info: "One of the world’s oldest uranium mines, open-pit operation."
-        },
-        {
-          name: "Husab Uranium Mine",
-          coords: [-22.5275, 15.0494],
-          info: "One of the largest uranium mines in Namibia, near Rossing."
-        },
-        {
-          name: "Langer Heinrich Mine",
-          coords: [-22.4625, 15.3972],
-          info: "Operated by Paladin Energy, currently under care & maintenance."
-        }
-      ];
-
-      mines.forEach(mine => {
-        L.marker(mine.coords)
-          .addTo(map)
-          .bindPopup(<strong>${mine.name}</strong><br>${mine.info});
-      });
+    mines.forEach(mine => {
+      L.marker(mine.coords)
+        .addTo(map)
+        .bindPopup(`<strong>${mine.name}</strong><br>${mine.info}`);
     });
+  });
+</script>
 
-    window.addEventListener('scroll', () => {
-      const trigger = window.innerHeight * 0.85;
-      document.querySelectorAll('section').forEach(sec => {
-        if (sec.getBoundingClientRect().top < trigger) {
-          sec.classList.add('visible');
-        }
-      });
-    });
-  </script>
 <script>
   window.addEventListener('scroll', () => {
     const trigger = window.innerHeight * 0.85;
@@ -634,9 +620,10 @@
 
   window.addEventListener('load', () => {
     document.querySelectorAll('section').forEach(sec => {
-      sec.classList.add('visible'); // fallback in case scroll doesn't trigger
+      sec.classList.add('visible');
     });
   });
 </script>
+
 </body>
 </html>
