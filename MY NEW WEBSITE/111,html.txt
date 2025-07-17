@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Global Hackatom Namibia 2025</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #333;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      z-index: -1;
+    }
+    header {
+      position: relative;
+      background-image: url('cleanclean.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 0;
+    }
+    header * {
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    nav {
+      background: #003366;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    #home { background-color: #f0f0f0; }
+    #about { background-color: #e0e0e0; }
+    #deposits { background-color: #d0d0d0; }
+    #comparison { background-color: #c0c0c0; }
+    #biotech { background-color: #b0b0b0; }
+    #sustainability { background-color: #a0a0a0; }
+    #quiz { background-color: orange; }
+    #references { background-color: #909090; }
+    #map { background-color: #808080; }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      color: #003366;
+    }
+    #map, #uraniumMap {
+      height: 400px;
+      margin-top: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌍 Exploring Uranium Extraction Methods</h1>
+    <p>A Path to Green Energy</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#deposits">Deposits</a>
+    <a href="#comparison">Comparison</a>
+    <a href="#biotech">Biotech ISR</a>
+    <a href="#sustainability">Sustainability</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#references">References</a>
+    <a href="#map">Map</a>
+  </nav>
+
+  <section id="home">
+    <h2>Welcome</h2>
+    <p>Nuclear energy is key to low-carbon power. Uranium mining must be safe, efficient, and sustainable. This site compares ISR and traditional mining, including new biotech methods.</p>
+    <button onclick="location.href='#quiz'">Start Quiz</button>
+    <button onclick="location.href='#comparison'">Explore Comparison</button>
+  </section>
+
+  <section id="about">
+    <h2>About Nuclear Energy</h2>
+    <p>Why nuclear energy matters in the fight against climate change:</p>
+    <ul>
+      <li>Zero CO₂ emissions</li>
+      <li>High reliability</li>
+      <li>Continuous safety improvements</li>
+    </ul>
+    <p><strong>Rosatom:</strong> Global leader in nuclear technology and innovation.</p>
+    <p><em>Infographic: 80 years of Russian atomic expertise (Insert image if available)</em></p>
+  </section>
+
+  <section id="deposits">
+    <h2>Where is Uranium Found?</h2>
+    <ul>
+      <li>Sandstone-hosted</li>
+      <li>Unconformity-related</li>
+      <li>Volcanic</li>
+      <li>Vein-type</li>
+    </ul>
+    <p>Geology influences the choice of mining methods.</p>
+  </section>
+
+  <section id="comparison">
+    <h2>ISR vs Traditional Mining</h2>
+    <table border="1" cellpadding="10">
+      <tr><th>Feature</th><th>Traditional Mining</th><th>ISR</th></tr>
+      <tr><td>Surface Damage</td><td>High</td><td>Minimal</td></tr>
+      <tr><td>Worker Safety</td><td>Low</td><td>High</td></tr>
+      <tr><td>Cost</td><td>High</td><td>Lower</td></tr>
+      <tr><td>Efficiency</td><td>Varies</td><td>High for certain deposits</td></tr>
+      <tr><td>Water Use</td><td>High</td><td>Moderate</td></tr>
+    </table>
+  </section>
+
+  <section id="biotech">
+    <h2>Biotech Innovation in ISR</h2>
+    <p>Biological methods like <strong>bioleaching</strong> use bacteria to recover uranium from:</p>
+    <ul>
+      <li>Low-grade ores</li>
+      <li>Mining waste/tailings</li>
+    </ul>
+    <p><strong>Benefits:</strong></p>
+    <ul>
+      <li>Less chemical usage</li>
+      <li>Lower environmental impact</li>
+      <li>Improved results in difficult ore bodies</li>
+    </ul>
+    <p><em>(Include diagram showing bioleaching process if available)</em></p>
+  </section>
+
+  <section id="sustainability">
+    <h2>Why It Matters</h2>
+    <h3>Environmental:</h3>
+    <ul>
+      <li>Reduced land disruption</li>
+      <li>Lower waste and toxicity</li>
+      <li>Radiation control</li>
+    </ul>
+    <h3>Economic:</h3>
+    <ul>
+      <li>Lower production cost</li>
+      <li>Long-term savings with biotech</li>
+    </ul>
+    <h3>Social:</h3>
+    <ul>
+      <li>Improved worker safety</li>
+      <li>Minimized harm to local ecosystems</li>
+    </ul>
+  </section>
+
+  <section id="quiz">
+    <h2>Test Your Knowledge</h2>
+    <p><strong>Question:</strong> Which method causes the least surface disruption?</p>
+    <ul>
+      <li><input type="radio" name="q1"> Traditional Mining</li>
+      <li><input type="radio" name="q1"> ISR</li>
+    </ul>
+    <p><strong>Question:</strong> What is one key benefit of biotech in ISR?</p>
+    <ul>
+      <li><input type="radio" name="q2"> Uses more chemicals</li>
+      <li><input type="radio" name="q2"> Reduces environmental impact</li>
+    </ul>
+    <!-- Add more questions as needed -->
+  </section>
+
+  <section id="references">
+    <h2>References & Sources</h2>
+    <ul>
+      <li>IAEA Safety Standards</li>
+      <li>Rosatom Technical Documents</li>
+      <li>Peer-reviewed journals on ISR and bioleaching</li>
+    </ul>
+  </section>
+
+  <section id="map">
+    <h2>Uranium Mining Map – Namibia</h2>
+    <div id="uraniumMap"></div>
+  </section>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const map = L.map('uraniumMap').setView([-22.45, 15.05], 7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      const mines = [
+        {
+          name: "Rossing Uranium Mine",
+          coords: [-22.4333, 15.0333],
+          info: "One of the world’s oldest uranium mines, open-pit operation."
+        },
+        {
+          name: "Husab Uranium Mine",
+          coords: [-22.5275, 15.0494],
+          info: "One of the largest uranium mines in Namibia, near Rossing."
+        },
+        {
+          name: "Langer Heinrich Mine",
+          coords: [-22.4625, 15.3972],
+          info: "Operated by Paladin Energy, currently under care & maintenance."
+        }
+      ];
+
+      mines.forEach(mine => {
+        L.marker(mine.coords)
+          .addTo(map)
+          .bindPopup(`<strong>${mine.name}</strong><br>${mine.info}`);
+      });
+    });
+  </script>
+</body>
+</html>
